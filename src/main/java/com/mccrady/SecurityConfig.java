@@ -37,11 +37,10 @@ public class SecurityConfig {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		log.info("Creating BCryptPasswordEncoder bean");
-		//BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		//System.out.println("==== user encoded: " + encoder.encode("user"));
-		//System.out.println("==== admin encoded: " + encoder.encode("admin"));
-		//return encoder;
-		return new BCryptPasswordEncoder();
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		System.out.println("==== secret encoded: " + encoder.encode("secret"));
+		System.out.println("==== admin encoded: " + encoder.encode("admin"));
+		return encoder;
 	}
 	
 	@Bean
@@ -52,13 +51,17 @@ public class SecurityConfig {
 			.httpBasic(Customizer.withDefaults())
 			.authorizeHttpRequests(
                authorizeRequest -> authorizeRequest
-               //authorize -> authorize.requestMatchers("/").permitAll() 
-               		  //.requestMatchers("/test/student").authenticated()
                        .requestMatchers("/test/student").hasAuthority("student")
                        .requestMatchers("/test/admin").hasAuthority("admin")
+                       .requestMatchers("/h2-console/**").permitAll()
                        .anyRequest().permitAll()
 					)
-					.formLogin(Customizer.withDefaults());
+					.formLogin(Customizer.withDefaults())
+					.headers(headers -> headers //H2 Console needs this to work properly
+							.frameOptions(frame -> frame
+			                .sameOrigin())
+			        )
+					;
 		
 		return http.build();
 	}

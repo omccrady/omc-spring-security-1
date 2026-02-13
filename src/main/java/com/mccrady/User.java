@@ -15,6 +15,13 @@ import lombok.Builder;
 import lombok.Data;
 
 
+
+//select id, username,password,authorities from users;
+//insert into users (id, username,password,authorities ) values (1, 'user', 'user'), ('admin', 'admin');
+//delete from users where id = 1;
+//update users set authorities='student:admin' where id=2;
+
+
 @Data
 //@Builder
 @Entity
