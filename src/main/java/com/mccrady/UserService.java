@@ -36,7 +36,6 @@ public class UserService implements UserDetailsService {
               .authorities("student") // Assigns default authority
               .build();
      */
-      
       User user1 = new User();
       user1.setUsername(username);
       user1.setPassword(new BCryptPasswordEncoder().encode(password));

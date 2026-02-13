@@ -38,8 +38,8 @@ public class SecurityConfig {
 	public PasswordEncoder passwordEncoder() {
 		log.info("Creating BCryptPasswordEncoder bean");
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		System.out.println("==== secret encoded: " + encoder.encode("secret"));
-		System.out.println("==== admin encoded: " + encoder.encode("admin"));
+		log.info("==== user encoded: " + encoder.encode("user"));
+		log.info("==== admin encoded: " + encoder.encode("admin"));
 		return encoder;
 	}
 	
