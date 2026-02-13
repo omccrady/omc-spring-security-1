@@ -1,21 +1,28 @@
-package com.mccrady;
+package com.mccrady.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsPasswordService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.mccrady.model.User;
+import com.mccrady.repo.UserRepo;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-//public class UserService implements UserDetailsPasswordService {
 public class UserService implements UserDetailsService {
 	
 	@Autowired private UserRepo userRepo; 
 	
-	public UserDetails loadUserByUsername(String username) { 
+
+	 public UserDetails loadUserByUsername(String username) { 
 		log.info("Loading user by username: {}", username);
 		
 		UserDetails userDetails = userRepo.findByUsername(username);

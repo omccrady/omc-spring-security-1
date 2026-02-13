@@ -8,8 +8,8 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<!--<version>3.0.0</version>--> <!-- OK -->
-		<!--<version>3.5.0</version>--> <!-- OK -->
-		<version>4.0.0</version> <!-- OK -->
+		<!-- <version>3.5.0</version>--> <!-- OK -->
+		<version>4.0.0</version>  <!-- OK Not H2? -->
 		<relativePath /> 
 	</parent>  
 	
@@ -46,6 +46,10 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-h2console</artifactId>
+		</dependency>		
 		<dependency>
 		    <groupId>com.microsoft.sqlserver</groupId>
 		    <artifactId>mssql-jdbc</artifactId>
